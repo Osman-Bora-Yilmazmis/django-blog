@@ -1,13 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
 from blog.models import YazilarModel
+from blog.abstract_models import DateAbstractModel
 
-class YorumModel(models.Model):
+class YorumModel(DateAbstractModel):
     yazan = models.ForeignKey('account.CustomUserModel', on_delete = models.CASCADE, related_name='yorum') #yorum yazan kişiyi user a bağladık yazan kişi db den silinirse yorum silinecek ayrıca yazan kişinin yorumlarına erişebilmek için related_name = 'yorum' yaptık. 
     yazi = models.ForeignKey(YazilarModel, on_delete = models.CASCADE, related_name = 'yorumlar')
     yorum = models.TextField()
-    olusturulma_tarihi = models.DateTimeField(auto_now_add = True)
-    guncellenme_tarihi = models.DateTimeField(auto_now = True)
+   
 
     class Meta:
         db_table = 'yorum'

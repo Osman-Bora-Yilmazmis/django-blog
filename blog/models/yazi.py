@@ -3,13 +3,13 @@ from autoslug import AutoSlugField
 from blog.models import KategoriModel #kategoriler attribute ü için
 from django.contrib.auth.models import User #yazar attribute ü için
 from ckeditor.fields import RichTextField 
+from blog.abstract_models import DateAbstractModel
 
-class YazilarModel(models.Model):
+class YazilarModel(DateAbstractModel):
     resim = models.ImageField(upload_to='yazi_resimleri')
     baslik = models.CharField(max_length=50)
     icerik = RichTextField()
-    oluşturulma_tarihi = models.DateTimeField(auto_now_add=True) #Kayıt oluşturulduğu anda oluşturulan tarih oto kaydedilir
-    duzenleme_tarihi = models.DateTimeField(auto_now=True) #Kayıt düzenlendiğinde oto olarak düzenlenme tarihi alanı değişir
+    
     slug = AutoSlugField(populate_from = 'baslik', unique=True) #www.oguzhancelikarslan.com/yazilar/pguzhan-celikarslan-kimdir? diye baslik olusturmamızı sağlar
     kategoriler = models.ManyToManyField(KategoriModel, related_name='yazi') #Bir yazının birden fazla kategoriye atanmasını sağlar
     yazar = models.ForeignKey('account.CustomUserModel', on_delete=models.CASCADE, related_name='yazilar')#on_delete-> yazar silinirse bütün yazilarini siler
