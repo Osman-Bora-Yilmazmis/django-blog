@@ -12,7 +12,7 @@ class YazilarModel(models.Model):
     duzenleme_tarihi = models.DateTimeField(auto_now=True) #Kayıt düzenlendiğinde oto olarak düzenlenme tarihi alanı değişir
     slug = AutoSlugField(populate_from = 'baslik', unique=True) #www.oguzhancelikarslan.com/yazilar/pguzhan-celikarslan-kimdir? diye baslik olusturmamızı sağlar
     kategoriler = models.ManyToManyField(KategoriModel, related_name='yazi') #Bir yazının birden fazla kategoriye atanmasını sağlar
-    yazar = models.ForeignKey(User, on_delete=models.CASCADE, related_name='yazilar')#on_delete-> yazar silinirse bütün yazilarini siler
+    yazar = models.ForeignKey('account.CustomUserModel', on_delete=models.CASCADE, related_name='yazilar')#on_delete-> yazar silinirse bütün yazilarini siler
 
     class Meta:
         verbose_name = 'Yazi'
