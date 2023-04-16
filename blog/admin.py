@@ -1,5 +1,6 @@
 from django.contrib import admin
 from blog.models import KategoriModel, YazilarModel,YorumModel, IletisimModel
+#admin paneli burada bulunmaktadır. admin panelinde çeşitli güncellemeler yapılabilir (/admin 'le erişilir)
 
 # Register your models here.
 

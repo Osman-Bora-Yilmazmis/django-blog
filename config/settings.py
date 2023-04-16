@@ -2,6 +2,8 @@
 import os
 from pathlib import Path
 
+#BURASI SETTINGS KISMIDIR DJANGO'nun kalbi burasıdır. uygulama için ayarlara buradan erişilebilir.
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
