@@ -1,7 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render # render kısmı gelen http adresini almamızı sağlayan fonksiyonu içerir
 from blog.models import YazilarModel
 from django.core.paginator import Paginator #Sayfalama işlemi için gereken paginator kütüphanesini aktifleştirmemizi sağlar
 from django.db.models import Q #import ettiğim Q değişkeni 'or' anlamı taşıamktadır.
+
+#WIEWS KISMI HAKKINDA BİLGİ:
+#burasi kullanıcının adres sahasına girdiği site adresini kontrol etmek amaçlı kullanılır
+#kullaniciyi sayfaya yönlendirmeden önce sayfanın özelliklerini belirlememize olanak sağlar
+# özetle views dosyası içinde biz ekranda çıkacak sayfanın özelliklerini kısıtlamalarını adreslerini kontrol ediyoruz.
 
 
 #sitenin anasayfasının requestleri burada bulunur ilgili sayfayanın başlığına giren kişiyi render metodundaki html adresine yönlendirir.

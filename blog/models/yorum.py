@@ -6,7 +6,7 @@ from blog.abstract_models import DateAbstractModel
 class YorumModel(DateAbstractModel):
     yazan = models.ForeignKey('account.CustomUserModel', on_delete = models.CASCADE, related_name='yorum') #yorum yazan kişiyi user a bağladık yazan kişi db den silinirse yorum silinecek ayrıca yazan kişinin yorumlarına erişebilmek için related_name = 'yorum' yaptık. 
     yazi = models.ForeignKey(YazilarModel, on_delete = models.CASCADE, related_name = 'yorumlar')
-    yorum = models.TextField()
+    yorum = models.TextField() 
    
 
     class Meta:

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{%load static%} <!-- önemlidir! eğer kodda static dosyasından image yazı belge vs cekiliyorsa cagirilmasi gerekir. biz burada yorumlardaki kullanıcıların image'ına göre gerçekleştirdik-->
+
+{% block title %} {{yazi.baslik}} {% endblock %}
+
+
+{% block content %}
+
+<div class="card mb-3">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="{{ yazi.resim.url }}" class="img" alt="..."><!-- yazi modelindeki resim attribute unu cektik-->
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{yazi.baslik|safe}}</h5> <!-- editörde texti kalınalştırınca UI da sıkıntı oluyor safe tagı bunu düzeltiyor-->
+        <p class="card-text"> {{yazi.icerik|safe}}</p> <!-- truncatechars eğer girilen text verisi yanındaki sayıdan uzunsa ... şeklinde gösteriyor-->
+        <p class="card-text"><small class="text-muted">Önce Paylaşıldı: {{yazi.duzenlenme_tarihi|timesince}}</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<h5>Yorumlar</h5>
+
+{%for yorum in yorumlar%}
+<div class="card ">
+  <div class="card-body" style="display:flex;flex-direction: row;">
+    <div>
+      {% if yorum.yazan.avatar %}
+        <img src="{{yorum.yazan.avatar.url}}" class="rounded mr-3 "  width="75px" height="75px">
+      {% else %}
+      <img src="{% static 'img/no-avatar.jpg'%}" class="rounded"  width="75px" height="75px">
+      {% endif %}
+    </div>
+    <div>
+      <h5 class="card-title">{{yorum.yazan.username}}</h5>
+      <p class="card-text">{{yorum.yorum}}</p>
+    </div>
+  </div>
+</div>
+
+{% empty %} <!-- eğer yukarıdaki döngü boş dönerse bu komut çalışır -->
+<p>Bu yazı için hiç yorum yapılmamıştır</p>
+
+{% endfor %}
+
+
+
+
+
+{% endblock %}

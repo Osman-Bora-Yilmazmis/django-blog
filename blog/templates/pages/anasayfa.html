@@ -6,6 +6,8 @@
 {% block content %}
 
 {% for yazi in yazilar %}
+<!-- href tagı üzerine tıklanınca gidilecek sayfanın adresini tutar-->
+<!-- a tagı ise üzerine tıklanma özelliğini aktifleştirir-->
 
 <div class="card mb-3">
   <div class="row no-gutters">
@@ -14,7 +16,9 @@
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">{{yazi.baslik|safe}}</h5> <!-- editörde texti kalınalştırınca UI da sıkıntı oluyor safe tagı bunu düzeltiyor-->
+        <h5 class="card-title" >
+          <a href="{% url 'detay' slug=yazi.slug %}">{{yazi.baslik}}</a> <!-- buradaki slug ilgili detayın hangi ders icin gösterilecegini tutacaktır bunu yapmamızın nedeni sistemde birden fazla ders olursa her birine farklı slug değeri atamak.-->
+        </h5> <!-- editörde texti kalınalştırınca UI da sıkıntı oluyor safe tagı bunu düzeltiyor-->
         <p class="card-text"> {{yazi.icerik|safe|truncatechars_html:100}}</p> <!-- truncatechars eğer girilen text verisi yanındaki sayıdan uzunsa ... şeklinde gösteriyor-->
         <p class="card-text"><small class="text-muted">Önce Paylaşıldı: {{yazi.duzenlenme_tarihi|timesince}}</small></p>
       </div>

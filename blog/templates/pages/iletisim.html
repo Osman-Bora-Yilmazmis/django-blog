@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %} <!-- crispy formunu html dosyamızda kullanmamızı sağlar-->
+
 
 {% block title %} Anasayfa {% endblock %}
 
 
 {% block content %}
 
-    iletişim
+    <form method="POST">
+        {% csrf_token %} <!-- güvenlikten kaynaklı eklenmezse form uygulaması gönderilince hata gösterir -->
+        {{ form|crispy }} <!-- crispy form 3. parti bootstrap kutuphanesidir iletisim ekranının daha iyi görünmesine olanak saglar-->
+        <input type="submit" class="btn btn-danger mt-3 mb-3" value="Gönder">
+    </form>
 
-    
 {% endblock %}

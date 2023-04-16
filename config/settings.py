@@ -29,9 +29,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',
-    'ckeditor',
-    'account'
+    'blog',#blog dosyası
+    'account',#account dosyası
+    # third party
+    'ckeditor',# ck editör admin panelinde yazı üzerinde customize yapmamızı sağlar
+    'crispy_forms', # iletişim html'sinde kullandık UI ekranını güzelleştiriyor
+    "crispy_bootstrap4",
 ]
 
 MIDDLEWARE = [
@@ -126,3 +129,7 @@ AUTH_USER_MODEL = 'account.CustomUserModel' #account dosyası içinde default ol
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media/') #Media klasörünün yolunu girdik.
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "Bootstrap4" #crispy kutuphanesi icin
+
+CRISPY_TEMPLATE_PACK = "Bootstrap4" #crispy kutuphanesi icin
