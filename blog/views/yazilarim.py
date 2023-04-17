@@ -12,7 +12,7 @@ def yazilarim(request):
     print(yazilar) #komut satırında test etmek için yazıldı
 
     sayfa = request.GET.get('sayfa') #bir istek sırasında belirli bir parametrenin değerini almak için kullanılır.
-    paginator = Paginator(yazilar, 1) #yazilar 2'li 2'li şekilde sıralanır 
+    paginator = Paginator(yazilar, 5) #yazilar 2'li 2'li şekilde sıralanır 
 
 
     return render(request, 'pages/yazilarim.html', context = {

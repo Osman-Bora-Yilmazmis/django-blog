@@ -15,7 +15,19 @@
       <div class="card-body">
         <h5 class="card-title">{{yazi.baslik|safe}}</h5> <!-- editörde texti kalınalştırınca UI da sıkıntı oluyor safe tagı bunu düzeltiyor-->
         <p class="card-text"> {{yazi.icerik|safe}}</p> <!-- truncatechars eğer girilen text verisi yanındaki sayıdan uzunsa ... şeklinde gösteriyor-->
-        <p class="card-text"><small class="text-muted">Önce Paylaşıldı: {{yazi.duzenlenme_tarihi|timesince}}</small></p>
+        <p class="card-text">
+          <small class="text-muted">
+          Önce Paylaşıldı: {{yazi.duzenlenme_tarihi|timesince}}
+        </small>
+          {% if request.user == yazi.yazar %}
+          <p>
+            <a class="btn btn-primary" href="{% url 'yazi-guncelle' slug=yazi.slug %}">Düzenle</a>
+            <a class="btn btn-danger" href="{% url 'yazi-sil' slug=yazi.slug %}">Sil</a>
+          </p>
+          
+          {% endif %}
+        
+        </p>
       </div>
     </div>
   </div>
@@ -25,7 +37,7 @@
 <h5>Yorumlar</h5>
 
 {%for yorum in yorumlar%}
-<div class="card ">
+<div class="card mb-3 ">
   <div class="card-body" style="display:flex;flex-direction: row;">
     <div>
       {% if yorum.yazan.avatar %}

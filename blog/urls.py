@@ -1,7 +1,7 @@
 from django.urls import path, include
-from blog.views import iletisim, anasayfa, kategori, yazilarim, detay
+from blog.views import iletisim, anasayfa, kategori, yazilarim, detay, yazi_ekle, yazi_guncelle, yazi_sil
 
-#Burası sayfa adreslerinin yollarının oluşturulduğu bölümdür 
+#Burası sayfa adreslerinin oluşturulduğu bölümdür 
 #ilgili sayfa ismini views içinde bulunan (örn: anasayfa.py dosyasıyla) eşleştiririz ve bu eşleştirme sonucunda
 # anasayfa.py dosyasına html kodlarımız içinde erişip gelen verileri kullanabiliriz 
 
@@ -16,4 +16,7 @@ urlpatterns = [
     path('kategori/<slug:kategoriSlug>',kategori, name='kategori'),#kategori yazısının yanına /asdad gibi rastgele değer girilirse bile anasayfaya yönlendirir. yani kategori isminde bir link tanımlandı
     path('yazilarim', yazilarim, name='yazilarim'),
     path('detay/<slug:slug>',detay, name='detay'),
+    path('yazi-ekle', yazi_ekle, name='yazi-ekle'),
+    path('yazi-guncelle/<slug:slug>',yazi_guncelle, name='yazi-guncelle'),
+    path('yazi-sil/<slug:slug>',yazi_sil, name='yazi-sil'),
 ]

@@ -10,7 +10,7 @@ class YazilarModel(DateAbstractModel):
     baslik = models.CharField(max_length=50)
     icerik = RichTextField()
     slug = AutoSlugField(populate_from = 'baslik', unique=True) #www.oguzhancelikarslan.com/yazilar/pguzhan-celikarslan-kimdir? diye baslik olusturmamızı sağlar
-    kategoriler = models.ManyToManyField(KategoriModel, related_name='yazi') #Bir yazının birden fazla kategoriye atanmasını sağlar
+    kategoriler = models.ManyToManyField(KategoriModel, related_name='yazi' ) #Bir yazının birden fazla kategoriye atanmasını sağlar
     yazar = models.ForeignKey('account.CustomUserModel', on_delete=models.CASCADE, related_name='yazilar')#on_delete-> yazar silinirse bütün yazilarini siler
 
     class Meta:
