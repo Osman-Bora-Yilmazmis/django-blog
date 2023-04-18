@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {%load static%} <!-- önemlidir! eğer kodda static dosyasından image yazı belge vs cekiliyorsa cagirilmasi gerekir. biz burada yorumlardaki kullanıcıların image'ına göre gerçekleştirdik-->
 
 {% block title %} {{yazi.baslik}} {% endblock %}
@@ -36,6 +37,18 @@
 
 <h5>Yorumlar</h5>
 
+{% if request.user.is_authenticated %} <!-- kullanıcı giriş yapmış mı yapmamış mı diye kontrol eder-->
+
+  <form method="POST"> <!-- bulunduğumuz sayfaya post atmak için action tagını sildik farklı bir sayfaya istegimizi gondermek istiyorsak eger action tagı kullanılmalı (çünkü attığımız yorum o sayfada görüntülenecek)-->
+    {% csrf_token %}
+    {{ yorum_ekle_form|crispy }}
+    <input type="submit" value="Yorum Yap" class="btn btn-danger mt-3 mb-3">
+  </form>
+
+  {% else %}
+  <p>Yorum yapmak için lütfen üye girişi yapınız.</p>
+{% endif %}
+
 {%for yorum in yorumlar%}
 <div class="card mb-3 ">
   <div class="card-body" style="display:flex;flex-direction: row;">
@@ -48,7 +61,17 @@
     </div>
     <div>
       <h5 class="card-title">{{yorum.yazan.username}}</h5>
-      <p class="card-text">{{yorum.yorum}}</p>
+      <p class="card-text">
+        {{yorum.yorum}}
+
+      </p>
+      
+      {% if request.user == yorum.yazan or request.user == yazi.yazar %} <!-- eğer yazıyı yazan kişi veya yorum atan kişi ise silme butonunu aktifleştir-->
+        <p>
+          <a class="btn btn-danger" href="{% url 'yorum-sil' id=yorum.id %}">Yorum Sil</a> <!-- yorum sil butonuna basıldıktan sonra önce url dosyasında yorum-sil alanına gidicek daha sonra views teki yorum_sil.py dosyası çalıştırılacak ve yorum silme işlemi gerçekleştirilecek-->
+        </p>
+      {% endif %}
+
     </div>
   </div>
 </div>
