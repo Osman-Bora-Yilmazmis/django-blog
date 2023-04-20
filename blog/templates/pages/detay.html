@@ -19,6 +19,8 @@
         <p class="card-text">
           <small class="text-muted">
           Önce Paylaşıldı: {{yazi.duzenlenme_tarihi|timesince}}
+          <br>
+            Yazar :<a href="{% url 'profil' username=yazi.yazar.username %}">{{yazi.yazar.username}}</a>
         </small>
           {% if request.user == yazi.yazar %}
           <p>
@@ -49,6 +51,8 @@
   <p>Yorum yapmak için lütfen üye girişi yapınız.</p>
 {% endif %}
 
+{% include 'components/message.html'%} <!-- bu html silme işlemi yapıldıktan sonra silme işleminin başarılı bir şekilde gerçekleştiğini döndüren bootstrap eklentisi bulunur.-->
+
 {%for yorum in yorumlar%}
 <div class="card mb-3 ">
   <div class="card-body" style="display:flex;flex-direction: row;">
@@ -56,14 +60,13 @@
       {% if yorum.yazan.avatar %}
         <img src="{{yorum.yazan.avatar.url}}" class="rounded mr-3 "  width="75px" height="75px">
       {% else %}
-      <img src="{% static 'img/no-avatar.jpg'%}" class="rounded"  width="75px" height="75px">
+      <img src="{% static 'img/no-avatar.jpg'%}" class="rounded mr-3"  width="75px" height="75px">
       {% endif %}
     </div>
     <div>
       <h5 class="card-title">{{yorum.yazan.username}}</h5>
       <p class="card-text">
         {{yorum.yorum}}
-
       </p>
       
       {% if request.user == yorum.yazan or request.user == yazi.yazar %} <!-- eğer yazıyı yazan kişi veya yorum atan kişi ise silme butonunu aktifleştir-->

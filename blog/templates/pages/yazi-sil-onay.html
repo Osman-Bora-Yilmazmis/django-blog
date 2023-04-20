@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Silmek istediğinize emin misiniz? {% endblock %}
+
+
+{% block content %}
+
+    <form method="POST">
+        {% csrf_token %} <!-- güvenlikten kaynaklı eklenmezse form uygulaması gönderilince hata gösterir -->
+        <p>Silmek istediginizden emin misiniz?</p>
+        <input type="submit" class="btn btn-danger mt-3 mb-3" value="Evet">
+    </form>
+
+{% endblock %}

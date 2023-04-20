@@ -29,9 +29,9 @@
 
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-end">
-    {% if yazilar.has_previous %}
+    {% if page_obj.has_previous %} <!-- page_obj dedigimiz ListView icinde bulunan hazır sayfalama methodudur-->
       <li class="page-item">
-        <a class="page-link" href="?sayfa={{yazilar.previous_page_number}}" tabindex="-1" aria-disabled="true">Önceki</a> <!-- yazilar.previous_page_number ilgili sayfadan önceki sayfanın numarasını gösterir-->
+        <a class="page-link" href="?page={{page_obj.previous_page_number}}" tabindex="-1" aria-disabled="true">Önceki</a> <!-- yazilar.previous_page_number ilgili sayfadan önceki sayfanın numarasını gösterir-->
       </li>
     
     {% else %}
@@ -41,15 +41,15 @@
 
     {% endif %}
 
-    <li class="page-item"><a class="page-link" href="#">{{yazilar.number}}</a></li>
+    <li class="page-item"><a class="page-link" href="#">{{page_obj.number}}</a></li>
     
-    {% if yazilar.has_next %}
+    {% if page_obj.has_next %} <!-- page_obj dedigimiz ListView icinde bulunan hazır sayfalama methodudur (paginate_by'ın html üzerinde erişebildigimiz bir ismidir) -->
       <li class="page-item">
-        <a class="page-link" href="?sayfa={{yazilar.next_page_number}}">Sonraki</a>
+        <a class="page-link" href="?page={{page_obj.next_page_number}}">Sonraki</a> <!-- page dedigimiz ilgili sayfa page_obj ise paginate_by'dan gelen html üzerinde erişebildiğimiz bir isimdir-->
       </li>
 
       <li class="page-item">
-        <a class="page-link" href="?sayfa={{yazilar.paginator.num_pages}}">Son Sayfa</a>
+        <a class="page-link" href="?page={{page_obj.paginator.num_pages}}">Son Sayfa</a>
       </li>
       
     {% endif %}

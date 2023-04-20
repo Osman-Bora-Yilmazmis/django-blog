@@ -1,0 +1,9 @@
+{% if messages %} <!-- hem yorum silmeden gelen mesaj hem de şifre değiştirmeden gelen mesaj olduğundan dolayı değişkenlik gösterebiliyor.-->
+
+<div class="alert alert-success" role="alert"> <!--bootstrapten alıdığımız  geri bildirim mesajı ekranı (kayıt olunduktan sonra veya yorum silindikten sonra çıkar).-->
+  {% for message in messages %}
+    {{ message }}
+  {% endfor %}
+</div>
+
+{% endif %}

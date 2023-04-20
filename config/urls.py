@@ -9,5 +9,6 @@ from django.conf import settings #Lazysettings yöntemiyle settingsteki media ro
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('account/',include('account.urls')),# accounta gelen istekler için account klasörünün içerisine gelen url'leri çalıştırmasını istedik
     path('', include('blog.urls')), #eğer baştaki yorum satırına hiçbir şey tanımlanmazsa o sayfayı anasayfa yapar
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) #userlar avatarlarını güncelleyebilir

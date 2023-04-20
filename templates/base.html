@@ -18,18 +18,19 @@
 
     <div class="container mt-3">
       <div class="row">
-        <div class="col-sm-9">
+        <div {% if request.user.is_authenticated %} class="col-sm-9" {% else %} class="col-sm-12" {% endif %}> <!-- eğer kullanıcı giriş yaptıysa cardların genişliği sm-9 uzunluğunda olsun./ giriş yapılmadıysa sm-12 uzunluğunda olsun-->
         {% block content %}{% endblock %}
           
         </div>
-        {% include 'components/sidebar.html' %}
-
+        {% if request.user.is_authenticated %} <!-- kullanıcı giriş yaptığysa sidebar gözüksün-->
+          {% include 'components/sidebar.html' %}
+        {% endif %}
         
-
       </div>
       {% include 'components/footer.html' %}
   
     </div>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script> <!-- animasyon dosyasıdır lottie animasyonlarını kullanmamızı sağlar-->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="{% static 'js/jquery-3.3.1.slim.min.js' %}" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

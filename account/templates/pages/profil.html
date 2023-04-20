@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} {{profil.username}} {% endblock %} <!-- sitenin başlığı girilir -->
+
+{% block content %} 
+
+<div class="card">
+    <div class="card-body">
+        <div class="card-text">
+            {% if profil.get_full_name == '' %}
+                Adı Soyadı: Girilmemiş
+            {% else %}
+                Adı Soyadı: {{profil.get_full_name}}
+            {% endif %}
+            <br>
+            Kullanıcı Adı: {{profil.username}}
+            <br>
+            {% if profil.email == '' %}
+                E-posta Adresi: Girilmemiş
+            {% else %}
+                E-posta Adresi: {{profil.email}}
+            {% endif %}
+            
+            
+            
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+

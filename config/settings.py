@@ -101,7 +101,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'tr' #TURKCE DIL DESTEGI
 
 TIME_ZONE = 'UTC'
 
@@ -133,3 +133,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media/') #Media klasörünün yolunu girdik.
 CRISPY_ALLOWED_TEMPLATE_PACKS = "Bootstrap4" #crispy kutuphanesi icin
 
 CRISPY_TEMPLATE_PACK = "Bootstrap4" #crispy kutuphanesi icin
+
+LOGIN_REDIRECT_URL = '/' #kullanici giriş ekranındaki bilgilerini doldurup gönderince otomatik olarak anasayfa ekranına yönlendirilir

@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from blog.models import YorumModel
 from django.shortcuts import get_object_or_404, redirect
+from django.contrib import messages #geri bildirim mesajı kütüphanesidir güncelleme, silme, uyarı verme, işlemlerini içerir
 
 #burada python django kütüphanesinin işlemi özetlenmiştir.
 #request.user sitede işlemi yapan kullanıcıyı döndürür.
@@ -10,6 +11,7 @@ def yorum_sil(request, id): #yorumları url kısmında slug üzerinden değilde 
     yorum = get_object_or_404(YorumModel, id=id)#id'si bizim sayfamıza yapılan yorumun  id'si olanı bulur
     if yorum.yazan ==request.user or yorum.yazi.yazar == request.user: #yorumun yazari giriş yapmış kullanıcı ise veya yazının yazarı giriş yapmış kullanıcı ise
         yorum.delete() #bu yorumu güzelce sil
+        messages.success(request, 'yorum başarıyla silindi') #yorum silindikten sonra ekranda bu yazı oluşturulur
         return redirect('detay', slug = yorum.yazi.slug) #daha sonra kullanıcı yazının bulundugu detay sayfasına gitsin(bunu slug= yorum.yazislug ile kontrol ettik)
     
     return redirect('anasayfa') #bu işlemlerin dışında bir işlem gerçekleşiyorsa onu direk anasayfaya yönlendir

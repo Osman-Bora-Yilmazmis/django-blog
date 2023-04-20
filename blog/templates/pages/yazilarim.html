@@ -28,7 +28,12 @@
     </tr>
 
     {% empty %}
-    <p>Hiç yazi bulunamadi....</p>
+    <div class="alert alert-warning" role="alert"> <!--bootstrapten alıdığımız  geri bildirim mesajı ekranıyla kullanıcıya yorum silinirse geri bildirim mesajı oluşturur.-->
+      
+        <p>Hiç yazınız yok</p>    
+      
+    </div>
+    
     {% endfor %}
     
   </tbody>

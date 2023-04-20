@@ -2,16 +2,17 @@
 {% load crispy_forms_tags %} <!-- crispy formunu html dosyamızda kullanmamızı sağlar-->
 
 
-{% block title %} Yazı Guncelle {% endblock %}
+{% block title %} Profil Guncelle {% endblock %}
 
 
 {% block content %}
-    
+    {% include 'components/message.html'%}
+
     <form enctype="multipart/form-data" method="POST"> <!-- buradaki enctype eger formumuzda medya dosyalarımız varsa (resim vs.) sistemde avatar güncellemesi yapılabilecek -->
         {% csrf_token %} <!-- güvenlikten kaynaklı eklenmezse form uygulaması gönderilince hata gösterir -->
-        {{form.media}} <!-- ck editörü sitemize ekler-->
+         <!-- ck editörü sitemize ekler-->
         {{ form|crispy }} <!-- crispy form 3. parti bootstrap kutuphanesidir iletisim ekranının daha iyi görünmesine olanak saglar-->
-        <input type="submit" class="btn btn-danger mt-3 mb-3" value="Yazı Guncelle">
+        <input type="submit" class="btn btn-danger mt-3 mb-3" value="Profil Guncelle">
     </form>
 
 {% endblock %}

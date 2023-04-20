@@ -1,6 +1,9 @@
 <div class="row">
     <div class="col-12">
-      <p>Tüm hakları saklıdır.</p>
+      <p>Tüm hakları saklıdır. </p>
+      {% if not request.user.is_authenticated %}
+        <p><a href="{% url 'giris' %}">Giriş</a> | <a href="{% url 'kayit' %}">Kayıt</a></p> <!-- aradaki or işaretiyle taglar yan yana yazılabilir.-->
+      {% endif %}
 
     </div>
 </div>
