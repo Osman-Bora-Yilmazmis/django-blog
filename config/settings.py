@@ -1,6 +1,10 @@
 
 import os
 from pathlib import Path
+import environ#KULLANICI BİLGİLERİNİ SAKLADIĞIMIZ ENVİRON KÜTÜPHANESİNİ İMPORT ETTİK
+
+env = environ.Env()
+environ.Env.read_env()
 
 #BURASI SETTINGS KISMIDIR DJANGO'nun kalbi burasıdır. uygulama için ayarlara buradan erişilebilir.
 
@@ -12,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ecqqiwvgbu=%=qq@@=c&6ik_%36-w5jria6-h46si18guod))='
+SECRET_KEY = env('SECRET_KEY') #KULLANICILAR HAKKINDA HASSAS BİLGİLER OLDUGUNDAN GİTHUBA PUSHLARKEN KULLANICI BİLGİLERİNİ GÖNDERMİYORUZ
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
