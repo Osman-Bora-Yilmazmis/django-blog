@@ -115,3 +115,31 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "Bootstrap4" #crispy kutuphanesi icin
 CRISPY_TEMPLATE_PACK = "Bootstrap4" #crispy kutuphanesi icin
 
 LOGIN_REDIRECT_URL = '/' #kullanici giriş ekranındaki bilgilerini doldurup gönderince otomatik olarak anasayfa ekranına yönlendirilir
+
+LOGGING = { #LOGGING ISLEMLERI KULLANICILARIN SITEDE YAPTIGI ISLERI TAKIP EDER
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'basit_ifade': {
+            #kullanici detay sayfasını görüntülediginde bilgiler assagıdaki formatta logs klasorunun ıcındeki dosyaya gonderilecek
+            'format': '{process:d} {thread:d} {asctime} {levelname} {message} {name}',
+            'style': '{',
+        }
+    },
+    'handlers':{
+        'console': {
+            'class': 'logging.StreamHandler'
+        },
+        'file':{ #BURAYA FILE TANIMLAYARAK KULLANICILARIN YAPTIKLARI İSLEMLERİ OTOMATIKMAN logs klasorunde olusuturulan log'a atar (örn: detay goruntuleme vs.)
+            'class': 'logging.FileHandler', #cfile handler class'ı cagirilir
+            'filename': 'logs/konu_okuma.log',#gelen bilgilerin gonderilecegi dosya belirlenir
+            'formatter': 'basit_ifade', #gonderilen bilginin sonuna gelen formatter eklenir
+        }
+    },
+    'loggers':{
+        'konu_okuma' :{
+            'handlers': ['console','file'],
+            'level': 'INFO'
+        }
+    }
+}

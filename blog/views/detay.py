@@ -3,6 +3,11 @@ from blog.models import YazilarModel #bu import işlemini yaparak veritabanında
 from blog.forms import YorumEkleModelForm
 from django.views import View #bu kütüphane sayesınde get ve post islemlerini methodun içine aktararak daha anlaşılır bir kod sayfası oluşturduk.
 from django.contrib import messages #yorum eklendikten sonra gelen bildirim mesajı
+import logging 
+
+
+logger = logging.getLogger('konu_okuma')
+
 
 class DetayView(View): #View'ı çağırıyoruz view'ın içindeki get'i ve post'u kullanıyoruz
     http_method_names = ['get','post']
@@ -10,6 +15,10 @@ class DetayView(View): #View'ı çağırıyoruz view'ın içindeki get'i ve post
 
     def get(self, request, slug): #ekranda yorumların gözükmesine olanak sağlar
         yazi = get_object_or_404(YazilarModel, slug=slug) #ilgili veri yoksa 404 gönderir
+        
+        if request.user.is_authenticated:
+            logger.info('konu okundu: ' + request.user.username)
+        
         yorumlar = yazi.yorumlar.all() #ilgili yazinin altındaki bütün yorumları döndürür.
         return render(request, 'pages/detay.html', context={
             'yazi': yazi,
